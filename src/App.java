@@ -9,12 +9,28 @@ public class App {
     static boolean down = false;           // Barra inferior
 
     static int num = 0;
-    static int numDigits = 0;
     static int digit = 0;
-    static int aux = 0;
 
-    static int start = 1;
-    static int end = 5;
+    static int start = 0;
+
+    public static void menu(){
+
+        System.out.print("""
+        *****************************************
+        *                                       *
+        *       NÚMEROS DIGITALES v1.0          *
+        *                                       *
+        *****************************************
+        *                                       *
+        *   [1] Mostrar secuencia (0 a N)       *
+        *   [2] Número específico               *
+        *   [0] Salir                           *
+        *                                       *
+        *****************************************
+        Opción: """);
+        start = Integer.parseInt(System.console().readLine());
+
+    }
 
     public static void requestNum(){
         do{
@@ -136,6 +152,8 @@ public class App {
 
     public static void printNum(){
 
+        setNumber();
+
         for(int i=1; i<=7; i++){
             
             for(int j=1; j<=5; j++){
@@ -226,6 +244,12 @@ public class App {
 
     }
 
+    public static void exit(){
+
+        System.out.println("Ha sido un placer :)");
+
+    }
+
     public static void limpiarPantalla() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -233,13 +257,30 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-        //do{
-            //limpiarPantalla();
-            requestNums();
+        do{
+            menu();
 
-            setNumber();
-
-            printNums();
-        //}while(digit != -1);
+            switch (start) {
+                case 1:
+                    requestNums();
+                    limpiarPantalla();
+                    printNums();
+                    break;
+                case 2:
+                    requestNum();
+                    limpiarPantalla();
+                    printNum();
+                    break;
+                case 0:
+                    limpiarPantalla();
+                    exit();
+                    break;
+                default:
+                    System.out.println("Introduce número válido");
+                    break;
+            }
+            Thread.sleep(1000);
+            limpiarPantalla();
+        }while(start != 0);
     }
 }
