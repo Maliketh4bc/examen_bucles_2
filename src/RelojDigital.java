@@ -211,14 +211,16 @@ public class RelojDigital {
                     if(downRgt == true && (i == 5 || i==6)){
                         if(downLft == false) System.out.printf("%s", (j<5)?" ":"");
                         System.out.printf("%s",(j==5)?"*":"");
-                    }else if(downRgt == false && j==5) System.out.print(" ");
+                    }
     
                     if(down == true && i == 7){
                         System.out.printf("%s",(j==1 || j==5)?" ":"*");
                     }else if(down == false && i==7) System.out.print(" ");
     
                 }
-                System.out.printf("%s", ((i==3 || i==6) && cont%2 != 0 && cont<4)?" * ":"   ");
+
+                if(cont%2 != 0) System.out.printf("%s", ((i==3 || i==6) && cont<=3)?" * ":"   ");
+                else System.out.printf("%s", "  ");
             }
 
             System.out.println();
